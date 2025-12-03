@@ -22,19 +22,19 @@
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer;
+    @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition-all duration-300 py-3.5 px-6 md:px-8 ease-in-out focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 hover:shadow-lg hover:scale-105 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer;
   }
 
   .btn-primary {
-    @apply btn font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary;
+    @apply btn font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary hover:text-white hover:shadow-xl hover:scale-110 dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary;
   }
 
   .btn-secondary {
-    @apply btn;
+    @apply btn hover:shadow-md;
   }
 
   .btn-tertiary {
-    @apply btn border-none shadow-none text-muted hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+    @apply btn border-none shadow-none text-muted hover:text-gray-900 hover:scale-105 dark:text-gray-400 dark:hover:text-white;
   }
 }
 
@@ -89,4 +89,136 @@
 
 .dd *:first-child {
   margin-top: 0;
+}
+
+/* Enhanced Hover Effects and UI Improvements */
+
+/* Card hover effects */
+.prose img,
+article img,
+[class*="card"] {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+article:hover,
+[class*="card"]:hover {
+  @apply transform scale-[1.02] shadow-xl;
+}
+
+/* Link hover effects */
+a:not(.btn) {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+a:not(.btn):hover {
+  @apply opacity-80 transform translate-x-0.5;
+}
+
+/* Image hover effects */
+img {
+  @apply transition-transform duration-500 ease-in-out;
+}
+
+img:hover {
+  @apply transform scale-105;
+}
+
+/* Icon hover effects */
+[astro-icon] {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+[astro-icon]:hover {
+  @apply transform rotate-12 scale-110;
+}
+
+/* Navigation item hover effects */
+nav a {
+  @apply relative transition-all duration-300;
+}
+
+nav a::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+}
+
+nav a:hover::after {
+  @apply w-full;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600;
+}
+
+/* Shadow effects on hover for containers */
+section:hover {
+  @apply transition-shadow duration-300;
+}
+
+/* Input focus effects */
+input:focus,
+textarea:focus {
+  @apply ring-2 ring-blue-500 ring-opacity-50 border-blue-500 transition-all duration-300;
+}
+
+/* Animated underline */
+.animated-underline {
+  @apply relative;
+}
+
+.animated-underline::before {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300;
+}
+
+.animated-underline:hover::before {
+  @apply w-full;
+}
+
+/* Pulse animation for important elements */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.pulse-slow {
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glassmorphism effect */
+.glass {
+  @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+}
+
+/* Enhanced dropdown hover */
+.dropdown-menu {
+  @apply transition-all duration-300 ease-in-out opacity-0 invisible transform -translate-y-2;
+}
+
+.dropdown:hover .dropdown-menu {
+  @apply opacity-100 visible translate-y-0;
 }
